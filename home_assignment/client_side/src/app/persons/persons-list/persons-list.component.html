@@ -1,0 +1,38 @@
+<dx-data-grid
+    [dataSource]="persons"
+    [showBorders]="true"
+    keyExpr="id"
+    [allowColumnResizing]="true"
+    [(selectedRowKeys)]="selectedRows"
+    [focusedRowEnabled]="true"
+    [(focusedRowKey)]="focusedRowKey"
+    [(autoNavigateToFocusedRow)]="autoNavigateToFocusedRow"
+    (onRowUpdated)="updateRow($event)"
+    (onRowRemoved)="removeRow($event)">
+    <dxo-selection mode="single"></dxo-selection>
+    <dxo-filter-row
+    [visible]="true">
+    </dxo-filter-row>
+    <dxo-paging [pageSize]="15"></dxo-paging>
+    <dxo-pager
+    [showPageSizeSelector]="true"
+    [allowedPageSizes]="[15, 30, 50, 100]"
+    ></dxo-pager>
+    <dxo-editing
+      mode="row"
+      [allowUpdating]="true"
+      [allowDeleting]="true">
+    </dxo-editing>
+  <dxi-column dataField="id"  caption="Persons ID"  [allowEditing]="false"></dxi-column>
+  <dxi-column dataField="first_name"  caption="First Name" sortOrder="asc"></dxi-column>
+  <dxi-column dataField="last_name" caption="Last Name" ></dxi-column>
+  <dxi-column dataField="email"  caption="Email"></dxi-column>
+  <dxi-column dataField="gender" caption="Gender"  dataType="string"
+  >
+  <dxo-lookup  
+        [dataSource]="getEnumArray()">  
+    </dxo-lookup>
+  </dxi-column>
+  <dxi-column dataField="address" caption="Address" ></dxi-column>
+  <dxi-column dataField="phone" caption="Phone" ></dxi-column>
+</dx-data-grid>
